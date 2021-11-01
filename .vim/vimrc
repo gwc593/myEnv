@@ -1,0 +1,89 @@
+syntax on
+" Common options
+set noerrorbells
+set visualbell
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set relativenumber
+set nu
+set smartcase
+set noswapfile
+set undodir=~/.vim/undodir
+set undofile
+"set mouse=a
+set paste
+set incsearch
+" Configure custom colors
+" set colorcolumn=120
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+" Change Color when entering Insert Mode
+autocmd InsertEnter * highlight  CursorLine ctermbg=Darkgrey
+
+" Disable arrows
+" noremap <Up> <Nop>
+" noremap <Down> <Nop>
+" noremap <Left> <Nop>
+" noremap <Right> <Nop>
+
+"TermDubug keyboard shortcuts
+"packadd termdebug
+"let g:termdebug_popup = 0
+"let g:termdebug_wide = 163
+"nnoremap <F5> :Continue<CR>
+"nnoremap <F10> :Over<CR>
+"nnoremap <F11> :Step<CR>
+"nnoremap <F12> :Finish<CR>
+"nnoremap <F9> :Break<CR>
+"nnoremap <S-F9> :Clear<CR>
+
+" Plugins
+call plug#begin('~/.vim/plugged')
+Plug 'morhetz/gruvbox'
+Plug 'puremourning/vimspector'
+Plug 'jremmen/vim-ripgrep'
+Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdtree'
+Plug 'vim-utils/vim-man'
+Plug 'rust-lang/rust.vim'
+Plug 'lyuts/vim-rtags'
+Plug 'https://github.com/kien/ctrlp.vim.git'
+Plug 'mbbill/undotree'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'https://github.com/ycm-core/YouCompleteMe.git'
+Plug 'edkolev/tmuxline.vim'
+call plug#end()
+
+nnoremap <leader>nn :set nu!<CR> :set rnu!<CR>
+
+set encoding=utf-8
+colorscheme gruvbox
+set background=dark
+
+
+
+" vim airline
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+
+"Nerd tree toggle
+map <F2> :NERDTreeToggle<CR>
+
+
+"Vimspector settings
+let g:vimspector_enable_mappings = 'HUMAN'
+packadd! vimspector
+nmap <leader>dd :call vimspector#Launch()<cr>
+nmap <leader>dx :VimspectorReset<cr>
+nmap <leader>de :VimspectorEval
+nmap <leader>dw :VimspectorWatch
+nmap <leader>do :VimspectorShowOutput
+
